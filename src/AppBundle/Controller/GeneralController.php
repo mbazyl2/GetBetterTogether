@@ -11,15 +11,8 @@ class GeneralController extends Controller
     /**
      * @Route("\")
      */
-     public function numberAction()
+     public function indexAction()
      {
-         $number = mt_rand(0, 100);
-
          return $this->render(':default:hello.html.twig');
      }
-
-    public function indexAction($name)
-    {
-        return $this->render('', array('name' => $name));
-    }
 }
