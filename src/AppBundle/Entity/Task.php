@@ -58,14 +58,9 @@ class Task
     private $progress;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Task", mappedBy="user")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="tasks")
      */
-    private $tasks;
-
-    public function __construct(){
-        $this->tasks = new ArrayCollection();
-    }
-
+    private $user;
 
     /**
      * Get id

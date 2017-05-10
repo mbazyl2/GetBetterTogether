@@ -9,10 +9,18 @@ use Symfony\Component\Routing\Annotation\Route;
 class GeneralController extends Controller
 {
     /**
-     * @Route("\")
+     * @Route("/")
      */
      public function indexAction()
      {
          return $this->render(':default:hello.html.twig');
+     }
+
+    /**
+     * @Route("/main")
+     */
+     public function loggedUserMain()
+     {
+         return $this->render(":default:main.html.twig");
      }
 }
