@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -55,6 +56,15 @@ class Task
      * @ORM\Column(name="progress", type="string", length=50, nullable=true)
      */
     private $progress;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Task", mappedBy="user")
+     */
+    private $tasks;
+
+    public function __construct(){
+        $this->tasks = new ArrayCollection();
+    }
 
 
     /**
