@@ -60,6 +60,23 @@ class CategoryController extends Controller
     }
 
     /**
+     * @Route("/cat")
+     */
+    public function myCategoryAction()
+    {
+        $user = $this->getUser()->getId();
+        $categories = $this->getDoctrine()->getRepository("AppBundle:Category")->usersCategories($user);
+        $cats =[];
+
+        foreach ($categories as $category)
+        {
+            $cats[]=$category->getName();
+
+        }
+        return $this->render("category/my_categories.html.twig", ["cats"=>$cats]);
+    }
+
+    /**
      * @Route("/onlyMy")
      * @Method("GET")
      */
@@ -71,7 +88,7 @@ class CategoryController extends Controller
 
         return $this->render("category/index.html.twig", [ 'categories' => $categories]);
     }
-    
+
     /**
      * Finds and displays a category entity.
      *

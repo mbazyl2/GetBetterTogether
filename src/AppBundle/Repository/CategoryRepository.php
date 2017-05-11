@@ -12,4 +12,11 @@ use Doctrine\ORM\EntityRepository;
  */
 class CategoryRepository extends EntityRepository
 {
+    public function usersCategories($userId)
+    {
+
+        $dql = "SELECT category FROM AppBundle:Category category WHERE category.userId = :userId";
+        $categories = $this->getEntityManager()->createQuery($dql)->setParameter("userId", $userId)->getResult();
+        return $categories;
+    }
 }
