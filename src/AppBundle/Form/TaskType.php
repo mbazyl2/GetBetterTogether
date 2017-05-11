@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\User;
+use function PHPSTORM_META\type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -23,7 +24,8 @@ class TaskType extends AbstractType
                     [ null, "Low"=>"Low", "Medium"=>"Medium", "High"=>"High"]])
                 ->add('progress', ChoiceType::class, ["choices" =>
                     [null, "Begins"=>"Begins", "In progress"=>"In progress", "Done"=>"Done"]])
-                ->add('category');
+                ->add('category')
+                ->add('public', ChoiceType::class, ["choices" => [true=> "Public", false=> "Private"]]);
     }
     
     /**

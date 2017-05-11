@@ -70,6 +70,11 @@ class Task
     private $user;
 
     /**
+     * @ORM\Column(name="public", type="boolean", nullable=true)
+     */
+    private $public;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -240,5 +245,28 @@ class Task
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * Set public
+     *
+     * @param boolean $public
+     * @return Task
+     */
+    public function setPublic($public)
+    {
+        $this->public = $public;
+
+        return $this;
+    }
+
+    /**
+     * Get public
+     *
+     * @return boolean 
+     */
+    public function getPublic()
+    {
+        return $this->public;
     }
 }
