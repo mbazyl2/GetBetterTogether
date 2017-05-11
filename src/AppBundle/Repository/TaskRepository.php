@@ -12,5 +12,11 @@ use Doctrine\ORM\EntityRepository;
  */
 class TaskRepository extends EntityRepository
 {
+ public function usersCategory($userId)
+ {
 
+     $dql = "SELECT task FROM AppBundle:Task task WHERE task.user = :userId";
+     $tasks = $this->getEntityManager()->createQuery($dql)->setParameter("userId", $userId)->getResult();
+     return $tasks;
+ }
 }

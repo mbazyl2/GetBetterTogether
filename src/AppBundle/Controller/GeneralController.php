@@ -14,7 +14,18 @@ class GeneralController extends Controller
      public function indexAction()
      {
          return $this->render(':default:hello.html.twig');
+         // sprawdzenie czy jest zalogowany admin/user/niezalogowany -> 3 sciezki na ktore przekierowuje
      }
+
+    /**
+     * @Route("/allUsers")
+     */
+    public function allUserAction()
+    {
+        $users = $this->getDoctrine()->getRepository("AppBundle:User")->findAll();
+
+        return $this->render(":default:main.html.twig", ["users" => $users]);
+    }
 
     /**
      * @Route("/main")

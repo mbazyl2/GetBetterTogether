@@ -16,6 +16,7 @@ use FOS\UserBundle\Controller\RegistrationController as BaseController;
  */
 class UserController extends BaseController
 {
+
     /**
      * Lists all user entities.
      *

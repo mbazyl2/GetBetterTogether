@@ -44,6 +44,24 @@ class TaskController extends Controller
 
         return $this->render("task/index.html.twig", [ 'tasks' => $tasks]);
     }
+
+    /**
+     * @Route("/cat")
+     */
+    public function myCatAction()
+    {
+        $user = $this->getUser()->getId();
+        $tasks = $this->getDoctrine()->getRepository("AppBundle:Task")->usersCategory($user);
+            $categories =[];
+
+            foreach ($tasks as $task)
+            {
+                $categories[]=$task->getCategory();
+
+            }
+        return $this->render("task/my_task_categories.html.twig", ["tasks"=>$categories]);
+    }
+
     /**
      * Creates a new task entity.
      *
@@ -148,4 +166,5 @@ class TaskController extends Controller
             ->getForm()
         ;
     }
+
 }
