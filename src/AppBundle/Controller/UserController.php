@@ -3,16 +3,18 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
+use Doctrine\ORM\Query\Expr\Base;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use FOS\UserBundle\Controller\RegistrationController as BaseController;
 
 /**
  * User controller.
  *
  * @Route("user")
  */
-class UserController extends Controller
+class UserController extends BaseController
 {
     /**
      * Lists all user entities.

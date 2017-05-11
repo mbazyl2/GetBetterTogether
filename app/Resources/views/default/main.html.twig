@@ -1,1 +1,10 @@
-<h2> witaj użytowniku </h2>
+<h2> hello User </h2>
+
+{% block rand %}
+    {% for task in tasks %}
+    <p> {{ task.description }}</p>
+        {% endfor %}
+    {% for user in users %}
+    <li> {{ user.username }} </li>
+    {% endfor %}
+{% endblock %}

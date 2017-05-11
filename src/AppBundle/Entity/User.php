@@ -31,7 +31,7 @@ class User extends BaseUser
      * @param \AppBundle\Entity\Task $tasks
      * @return User
      */
-    public function addTweet(\AppBundle\Entity\Task $tasks)
+    public function addTask(\AppBundle\Entity\Task $tasks)
     {
         $this->tasks[] = $tasks;
 

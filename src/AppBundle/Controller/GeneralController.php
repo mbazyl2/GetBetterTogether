@@ -23,4 +23,30 @@ class GeneralController extends Controller
      {
          return $this->render(":default:main.html.twig");
      }
+
+     /**
+      * @Route("/try")
+      */
+     public function showAllTasks()
+     {
+
+         $taskRepo = $this->getDoctrine()->getRepository("AppBundle:Task");
+         $userRepo = $this->getDoctrine()->getRepository("AppBundle:User");
+
+         $tasks = $taskRepo->findAll();
+         $users = $userRepo->findAll();
+
+         return $this->render(":default:main.html.twig", ["tasks" => $tasks, "users" => $users]);
+
+     }
+
+     /**
+      * @Route("/try2")
+      */
+     public function gettingUser()
+     {
+         $userName = $this->getUser()->getEmail();
+
+         return $this->render(":default:try.html.twig", ["username"=>$userName]);
+     }
 }
