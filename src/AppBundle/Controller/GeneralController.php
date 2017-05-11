@@ -22,8 +22,8 @@ class GeneralController extends Controller
      */
     public function allUserAction()
     {
+        // showing all users in system
         $users = $this->getDoctrine()->getRepository("AppBundle:User")->findAll();
-
         return $this->render(":default:main.html.twig", ["users" => $users]);
     }
 
@@ -41,6 +41,7 @@ class GeneralController extends Controller
      public function showAllTasks()
      {
 
+         // showing all users and tasks
          $taskRepo = $this->getDoctrine()->getRepository("AppBundle:Task");
          $userRepo = $this->getDoctrine()->getRepository("AppBundle:User");
 
@@ -56,7 +57,7 @@ class GeneralController extends Controller
       */
      public function gettingUser()
      {
-         $userName = $this->getUser()->getEmail();
+         $userName = $this->getUser()->getId();
 
          return $this->render(":default:try.html.twig", ["username"=>$userName]);
      }
