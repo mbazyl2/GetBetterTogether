@@ -111,27 +111,4 @@ class Category
     }
 
    
-
-    /**
-     * Set userId
-     *
-     * @param integer $userId
-     * @return Category
-     */
-    public function setUserId($userId)
-    {
-        $this->userId = $userId;
-
-        return $this;
-    }
-
-    /**
-     * Get userId
-     *
-     * @return integer 
-     */
-    public function getUserId()
-    {
-        return $this->userId;
-    }
 }

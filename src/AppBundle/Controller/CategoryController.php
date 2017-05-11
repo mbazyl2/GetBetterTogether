@@ -39,11 +39,13 @@ class CategoryController extends Controller
      */
     public function newAction(Request $request)
     {
+        $userId = $this->getUser()->getId();
         $category = new Category();
         $form = $this->createForm('AppBundle\Form\CategoryType', $category);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $category->setUserId($userId);
             $em = $this->getDoctrine()->getManager();
             $em->persist($category);
             $em->flush();
@@ -57,6 +59,19 @@ class CategoryController extends Controller
         ));
     }
 
+    /**
+     * @Route("/onlyMy")
+     * @Method("GET")
+     */
+    public function onlyMyAction()
+    {
+        $user = $this->getUser()->getId();
+        $em = $this->getDoctrine()->getManager();
+        $categories = $em->getRepository('AppBundle:Category')->findBy(["userId"=>$user]);
+
+        return $this->render("category/index.html.twig", [ 'categories' => $categories]);
+    }
+    
     /**
      * Finds and displays a category entity.
      *

@@ -19,6 +19,12 @@ class User extends BaseUser
      */
     protected $id;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Task", mappedBy="user")
+     */
+    private $tasks;
+
+
     public function __construct()
     {
         parent::__construct();
@@ -37,11 +43,6 @@ class User extends BaseUser
 
         return $this;
     }
-
-    /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Task", mappedBy="user")
-     */
-    private $tasks;
 
 
     /**

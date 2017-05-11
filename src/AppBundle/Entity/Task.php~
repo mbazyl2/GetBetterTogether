@@ -75,6 +75,11 @@ class Task
     private $public;
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category", inversedBy="tasks")
+     */
+    private $categorized;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -245,5 +250,28 @@ class Task
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * Set public
+     *
+     * @param boolean $public
+     * @return Task
+     */
+    public function setPublic($public)
+    {
+        $this->public = $public;
+
+        return $this;
+    }
+
+    /**
+     * Get public
+     *
+     * @return boolean 
+     */
+    public function getPublic()
+    {
+        return $this->public;
     }
 }
