@@ -2,9 +2,12 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Choice;
 
 class TaskType extends AbstractType
 {
@@ -16,8 +19,11 @@ class TaskType extends AbstractType
         $builder->add('name')
                 ->add('description')
                 ->add('date')
-                ->add('priority')
-                ->add('progress');
+                ->add('priority', ChoiceType::class, ["choices" =>
+                    [ null, "Low"=>"Low", "Medium"=>"Medium", "High"=>"High"]])
+                ->add('progress', ChoiceType::class, ["choices" =>
+                    [null, "Begins"=>"Begins", "In progress"=>"In progress", "Done"=>"Done"]])
+                ->add('category');
     }
     
     /**

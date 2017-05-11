@@ -33,6 +33,18 @@ class TaskController extends Controller
     }
 
     /**
+     * @Route("/onlyMy")
+     * @Method("GET")
+     */
+    public function onlyMyAction()
+    {
+        $user = $this->getUser()->getId();
+        $em = $this->getDoctrine()->getManager();
+        $tasks = $em->getRepository('AppBundle:Task')->findBy(["user"=>$user]);
+
+        return $this->render("task/index.html.twig", [ 'tasks' => $tasks]);
+    }
+    /**
      * Creates a new task entity.
      *
      * @Route("/new", name="task_new")
@@ -40,11 +52,13 @@ class TaskController extends Controller
      */
     public function newAction(Request $request)
     {
+        $user = $this->getUser();
         $task = new Task();
         $form = $this->createForm('AppBundle\Form\TaskType', $task);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $task->setUser($user);
             $em = $this->getDoctrine()->getManager();
             $em->persist($task);
             $em->flush();
