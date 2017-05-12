@@ -73,7 +73,7 @@ class CategoryController extends Controller
             $cats[]=$category->getName();
 
         }
-        return $this->render("category/my_categories.html.twig", ["cats"=>$cats]);
+        return $this->render(":category:my_categories.html.twig", ["cats"=>$cats]);
     }
 
     /**

@@ -70,9 +70,11 @@ class TaskController extends Controller
      */
     public function newAction(Request $request)
     {
+        $userId= $this->getUser()->getId();
+
         $user = $this->getUser();
         $task = new Task();
-        $form = $this->createForm('AppBundle\Form\TaskType', $task);
+        $form = $this->createForm('AppBundle\Form\TaskType', $task );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
