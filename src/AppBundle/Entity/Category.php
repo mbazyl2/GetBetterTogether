@@ -134,4 +134,9 @@ class Category
     {
         return $this->userId;
     }
+
+    public function __toString()
+    {
+        return $this->getName(); // if you have a name property you can do $this->getName();
+    }
 }

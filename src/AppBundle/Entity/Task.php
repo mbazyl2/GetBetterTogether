@@ -297,4 +297,8 @@ class Task
     {
         return $this->categorized;
     }
+    public function __toString()
+    {
+        return $this->getCategory(); // if you have a name property you can do $this->getName();
+    }
 }
