@@ -18,10 +18,12 @@ class TaskType extends AbstractType
 
     /**
      * {@inheritdoc}
+     * @param FormBuilderInterface $builder
+     * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-       // $userId = $this->userId;
+        $this->userId = $options['userId'];
 
         $builder->add('name')
                 ->add('description')
@@ -30,16 +32,15 @@ class TaskType extends AbstractType
                     [ null, "Low"=>"Low", "Medium"=>"Medium", "High"=>"High"]])
                 ->add('progress', ChoiceType::class, ["choices" =>
                     [null, "Begins"=>"Begins", "In progress"=>"In progress", "Done"=>"Done"]])
-                ->add('category')
-                  //, EntityType::class,
-                  //   [ "class"=> "AppBundle:Category" ,
-                  //    "query_builder" => function (EntityRepository $er){
-                  //  return $er->createQueryBuilder('c')
-                  //      ->where("c.userId = :userId" )
-                  //      ->setParameter("userId", $userId)
-                  //      ->orderBy("c.name", "ASC");
-                  //    }, "choice_label"=>"name",
-                  //    ])
+                ->add('category', EntityType::class,
+                     [ "class"=> "AppBundle:Category" ,
+                      "query_builder" => function (EntityRepository $er){
+                    return $er->createQueryBuilder('c')
+                        ->where("c.userId = :userId" )
+                        ->setParameter("userId", "$this->userId")
+                        ->orderBy("c.name", "ASC");
+                      }, "choice_label"=>"name",
+                      ])
                 ->add('public', ChoiceType::class, ["choices" => [true=> "Public", false=> "Private"]]);
     }
     
@@ -49,7 +50,8 @@ class TaskType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Task'
+            'data_class' => 'AppBundle\Entity\Task',
+            'userId' => true,
         ));
     }
 
