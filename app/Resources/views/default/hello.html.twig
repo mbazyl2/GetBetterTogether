@@ -1,5 +1,26 @@
-<h1 align="center"> Welcome on our main page</h1>
+{% extends "base.html.twig" %}
+{% block title %}<title>Welcome!</title>{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href={{ asset("css/cover.css") }} rel="stylesheet">
+{% endblock %}
+{% block body %}
+     <div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+<h1 align="center"> HeHEheHehEHEhe...Helllo ! ! !</h1>
 <h3 align="center"> Get Better Together Team</h3>
 <div align="center"><a href="/login"> Log In </a></div>
 <br>
 <div align="center"><a href="/profile"> Show my board </a></div>
+</div>
+</div>
+     </div>
+    {% endblock %}
+
+
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+{% endblock %}
